@@ -1,0 +1,192 @@
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@use "../../sass/common";
+@use "../../sass/typescale";
+
+$history-item-vertical-padding: common.$spacing-medium;
+$history-item-horizontal-padding: common.$spacing-large;
+
+answer-item {
+  display: block;
+  height: max-content;
+}
+
+.history-item {
+  @include common.flex-column;
+  height: max-content;
+
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 8px;
+
+  background: var(--md-sys-color-surface);
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &.is-collapsed {
+    height: auto;
+
+    .answer,
+    .toggle-button,
+    .references-panel {
+      display: none;
+    }
+  }
+}
+
+.question-answer-container {
+  flex-shrink: 0;
+  overflow-y: auto;
+  max-height: 100%;
+
+  &.are-references-shown {
+    max-height: 60%;
+  }
+}
+
+.highlight {
+  @include common.flex-row-align-center;
+  justify-content: space-between;
+
+  color: var(--md-sys-color-on-tertiary-container);
+  background: var(--md-sys-color-tertiary-container-lowest);
+  border: 1px solid var(--md-sys-color-tertiary-container);
+  padding: common.$spacing-medium;
+  border-radius: 4px;
+  margin: 0 $history-item-horizontal-padding;
+
+  span {
+    @include common.overflow-ellipsis;
+  }
+}
+
+.question {
+  @include common.flex-row-align-center;
+  justify-content: space-between;
+
+  @include typescale.title-medium;
+  font-weight: 500;
+
+  position: sticky;
+  top: 0;
+  background: var(--md-sys-color-surface);
+  z-index: 1;
+
+  padding: $history-item-vertical-padding $history-item-horizontal-padding;
+
+  .left {
+    @include common.flex-row-align-center;
+    overflow: hidden;
+  }
+
+  .toggle-answer-button {
+    margin-right: common.$spacing-medium;
+  }
+
+  .question-text {
+    @include common.flex-row-align-center;
+    gap: common.$spacing-medium;
+    @include common.overflow-ellipsis;
+    @include typescale.title-medium;
+
+    -webkit-text-size-adjust: none;
+
+    transition: opacity 0.25s ease;
+    -moz-transition: opacity 0.25s ease;
+    -webkit-transition: opacity 0.25s ease;
+
+    &.is-collapsed {
+      opacity: 0.5;
+      font-style: italic;
+      padding-right: common.$spacing-medium;
+
+      --pr-icon-color: var(--md-sys-color-on-surface-higher);
+    }
+
+    .c-lumi-info-icon {
+      font-style: normal;
+    }
+  }
+}
+
+.answer {
+  padding: 0 $history-item-horizontal-padding common.$spacing-xl;
+}
+
+.mentions-text {
+  @include typescale.label-medium;
+  color: var(--md-sys-color-on-surface-higher);
+}
+
+.toggle-button {
+  @include common.flex-row-align-center;
+  gap: common.$spacing-medium;
+
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-tertiary);
+
+  padding: 6px $history-item-horizontal-padding;
+
+  cursor: pointer;
+
+  position: sticky;
+  top: 0;
+  background: var(--md-sys-color-surface);
+  z-index: 1;
+
+  white-space: nowrap;
+}
+
+.references-panel {
+  @include common.flex-column;
+  gap: common.$spacing-medium;
+
+  padding: $history-item-vertical-padding $history-item-horizontal-padding;
+
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.references-header {
+  @include typescale.title-small;
+  font-weight: 500;
+}
+
+.references-content {
+  @include typescale.body-small;
+  @include common.flex-column;
+  gap: common.$spacing-medium;
+}
+
+.reference-item {
+  padding: common.$spacing-small;
+  margin: -1 * common.$spacing-small;
+  border-radius: common.$spacing-small;
+
+  cursor: pointer;
+
+  &:hover {
+    background: var(--md-sys-color-primary-container-lowest);
+  }
+}
+
+.spinner {
+  @include common.flex-row-align-center;
+  justify-content: center;
+  padding: 20px 0;
+}

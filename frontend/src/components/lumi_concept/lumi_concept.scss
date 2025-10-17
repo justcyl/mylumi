@@ -1,0 +1,53 @@
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@use "../../sass/common";
+@use "../../sass/typescale";
+
+.lumi-concept-host {
+  @include common.flex-column;
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: common.$spacing-medium;
+  gap: common.$spacing-medium;
+  padding: common.$spacing-xl common.$spacing-xl common.$spacing-medium;
+  flex-shrink: 0;
+
+  .lumi-concept-header {
+    @include typescale.title-small;
+    @include common.flex-row-align-center;
+    gap: common.$spacing-small;
+    cursor: pointer;
+  }
+
+  .lumi-concept-label {
+    @include typescale.label-small;
+  }
+
+  .lumi-concept-heading {
+    @include typescale.title-small;
+    margin: 0;
+    color: var(--md-sys-color-on-surface-high);
+  }
+
+  .lumi-concept-content {
+    @include typescale.body-small;
+
+    display: block;
+    color: var(--md-sys-color-on-surface-high);
+  }
+}

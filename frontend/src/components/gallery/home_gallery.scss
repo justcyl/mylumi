@@ -1,0 +1,215 @@
+/**
+ * @license
+ * Copyright 2025 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@use "../../sass/colors";
+@use "../../sass/common";
+@use "../../sass/typescale";
+
+:host {
+  @include common.flex-column-align-center;
+  gap: common.$spacing-xl;
+}
+
+.banner {
+  background: var(--md-sys-color-tertiary-container);
+  border-radius: common.$spacing-medium;
+  color: var(--md-sys-color-on-tertiary-container);
+  padding: common.$spacing-large;
+  width: 100%;
+}
+
+.empty-message {
+  color: var(--md-sys-color-outline);
+  font-style: italic;
+}
+
+h1 {
+  @include typescale.title-medium;
+}
+
+.paper-input {
+  @include common.flex-row-align-center;
+  border: 2px solid var(--md-sys-color-outline-variant);
+  border-radius: common.$spacing-medium;
+  max-width: common.$info-content-max-width;
+  padding: common.$spacing-large;
+  gap: common.$spacing-medium;
+  width: 100%;
+
+  pr-textarea {
+    flex-grow: 1;
+  }
+
+  pr-icon-button {
+    flex-shrink: 1;
+  }
+}
+
+.loading-section {
+  @include common.flex-column;
+  @include typescale.body-small;
+  color: var(--md-sys-color-outline);
+  gap: common.$spacing-small;
+}
+
+.center-wrapper {
+  align-items: center;
+  @include common.flex-column;
+  gap: common.$spacing-xl;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.preview-gallery {
+  display: grid;
+  gap: common.$spacing-large;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: common.$info-content-max-width;
+
+  @include common.viewport-medium {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.preview-item {
+  @include common.flex-column;
+  border: 2px solid var(--md-sys-color-gray-container);
+  border-radius: common.$spacing-small;
+  gap: common.$spacing-large;
+  height: 100%;
+  max-width: calc(common.$info-content-max-width / 2);
+  padding: common.$spacing-large;
+  transition: all 0.25s ease-out;
+  width: 100%;
+
+  @include common.viewport-small {
+    max-width: common.$info-content-max-width-mobile;
+  }
+
+  &:focus,
+  &:hover {
+    box-shadow: common.$spacing-small common.$spacing-small 1px 0
+      var(--md-sys-color-gray-container);
+    border-color: var(--md-sys-color-primary);
+    cursor: pointer;
+    transform: translate(-2px);
+    transition: all 0.25s ease-out;
+  }
+}
+
+.preview-metadata {
+  @include common.flex-row;
+  gap: common.$spacing-small;
+
+  @include typescale.label-small;
+  margin: common.$spacing-small 0;
+  color: var(--md-sys-color-on-surface-higher);
+
+  .preview-authors {
+    @include common.overflow-ellipsis;
+  }
+}
+
+.preview-image {
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  height: 200px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.preview-image-gradient {
+  background: linear-gradient(
+    50deg,
+    var(--md-sys-color-gray-container),
+    var(--md-sys-color-surface)
+  );
+}
+
+.preview-content {
+  @include common.flex-column;
+  gap: common.$spacing-small;
+}
+
+.preview-title {
+  @include typescale.title-medium;
+}
+
+.chip {
+  @include common.chip;
+  @include typescale.label-small;
+  width: max-content;
+}
+
+.nav-menu {
+  @include common.flex-row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: common.$spacing-medium;
+}
+
+.nav-item {
+  @include common.flex-row;
+  @include typescale.label-medium;
+  align-items: center;
+  border: 2px solid var(--md-sys-color-gray-container);
+  border-radius: common.$spacing-medium;
+  color: var(--md-sys-color-gray);
+  font-size: 90%;
+  gap: common.$spacing-small;
+  justify-content: center;
+  min-width: 50px;
+  padding: common.$spacing-small common.$spacing-medium;
+
+  &:focus,
+  &:hover {
+    border-color: var(--md-sys-color-gray-container-high);
+    cursor: pointer;
+  }
+
+  &.active,
+  &.active:focus,
+  &.active:hover {
+    background: var(--md-sys-color-primary-container-low);
+    border-color: var(--md-sys-color-primary-container-high);
+    color: var(--md-sys-color-primary);
+
+    pr-icon {
+      --pr-icon-color: var(--md-sys-color-primary);
+    }
+  }
+
+  pr-icon {
+    --pr-icon-color: var(--md-sys-color-gray);
+  }
+}
+
+.dialog-content {
+  @include common.flex-column;
+  gap: common.$spacing-xl;
+}
+
+a.paper-card-link {
+  @include common.flex-column;
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+}
+
+paper-card {
+  flex-grow: 1;
+}
